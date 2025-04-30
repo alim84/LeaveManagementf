@@ -6,12 +6,13 @@ import Rootlayout from "./component/layout/Rootlayout";
 import Addproduct from "./pages/Addproduct";
 import { Allproduct } from "./pages/Allproduct";
 
-import AllCategory from "./pages/AllCategory";
+
 import ProtectRoute from "./component/layout/ProtectRoute";
 import PersonelInfo from "./pages/PersonelInfo";
 import Inventory from "./pages/Inventory";
 import Comsumption from "./pages/Consumption";
 import LeaveManagement from "./pages/LeaveManagement";
+import Showleave from "./pages/Showleave";
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
             <Route path="/addproduct" element={<Addproduct />} />
             <Route path="/leavemanagement" element={<LeaveManagement />} />
             <Route path="/allproduct" element={<Allproduct />} />
-            <Route path="/allcategory" element={<AllCategory />} />
+            <Route path="/showleave" element={<Showleave />} />
             <Route path="/personel" element={<PersonelInfo />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/consumption" element={<Comsumption />} />

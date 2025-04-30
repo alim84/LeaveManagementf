@@ -1,7 +1,11 @@
 const express = require("express");
 
 const multer = require("multer");
-const { LeaveController, ShowLeaveController } = require("../../controllers/LeaveController");
+const {
+  LeaveController,
+  ShowLeaveController,
+  deleteLeave,
+} = require("../../controllers/LeaveController");
 
 const router = express.Router();
 
@@ -41,6 +45,8 @@ router.post(
   errorhandle,
   LeaveController
 );
-router.get("/showleave",  ShowLeaveController);
+router.get("/showleave", ShowLeaveController);
+router.delete("/deleteleave/:id", deleteLeave);
+router.patch("/updateleave/:id", upload.single("image"), updateLeaveController);
 
 module.exports = router;

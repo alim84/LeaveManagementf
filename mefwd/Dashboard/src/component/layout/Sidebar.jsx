@@ -32,13 +32,13 @@ export function DefaultSidebar() {
           <ListItemPrefix>
             <RiApps2AddFill className="h-5 w-5" />
           </ListItemPrefix>
-          <Link to="/addcategory">Leave Management</Link>
+          <Link to="/leavemanagement">Leave Management</Link>
         </ListItem>
         <ListItem>
           <ListItemPrefix>
             <BiSolidCategoryAlt className="h-5 w-5" />
           </ListItemPrefix>
-          <Link to="/allcategory">Show Leave Management</Link>
+          <Link to="/showleave">Show Leave Management</Link>
         </ListItem>
 
         <ListItem>

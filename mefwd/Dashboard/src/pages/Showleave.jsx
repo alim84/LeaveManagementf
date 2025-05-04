@@ -47,11 +47,19 @@ const Showleave = () => {
     }
   };
 
-  const handleEditClick = (category) => {
-    setEditLeave(category);
+  const handleEditClick = (leave) => {
+    setEditLeave(leave);
     setUpdatedData({
-      name: category.name,
-      description: category.description,
+      name: leave.name,
+      code: leave.code,
+      designation: leave.designation,
+      institute: leave.institute,
+      from: leave.from,
+      to: leave.to,
+      country: leave.country,
+      category: leave.category,
+      finance: leave.finance,
+      description: leave.description,
       image: null,
     });
   };
@@ -72,6 +80,14 @@ const Showleave = () => {
 
     const formData = new FormData();
     formData.append("name", updatedData.name);
+    formData.append("code", updatedData.code);
+    formData.append("designation", updatedData.designation);
+    formData.append("institute", updatedData.institute);
+    formData.append("from", updatedData.from);
+    formData.append("to", updatedData.to);
+    formData.append("country", updatedData.country);
+    formData.append("category", updatedData.category);
+    formData.append("finance", updatedData.finance);
     formData.append("description", updatedData.description);
     if (updatedData.image) formData.append("image", updatedData.image);
 
@@ -79,7 +95,7 @@ const Showleave = () => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/category/updatecategory/${editCategory._id}`,
+        `http://localhost:5000/api/v1/leave/updateleave/${editleave._id}`,
         formData,
         {
           headers: {
@@ -91,18 +107,18 @@ const Showleave = () => {
 
       if (response.data.success) {
         setShowleave(
-          leave.map((cat) =>
-            cat._id === editleave._id ? response.data.data : cat
+          leave.map((lev) =>
+            lev._id === editleave._id ? response.data.data : lev
           )
         );
         setEditLeave(null);
-        alert("Category updated successfully!");
+        alert("leave updated successfully!");
       } else {
-        alert("Failed to update category.");
+        alert("Failed to update leave.");
       }
     } catch (error) {
-      console.error("Error updating category:", error);
-      alert("An error occurred while updating the category.");
+      console.error("Error updating leave:", error);
+      alert("An error occurred while updating the leave.");
     }
   };
 
@@ -162,7 +178,7 @@ const Showleave = () => {
       {editleave && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-96">
-            <h2 className="text-2xl font-bold mb-4">Edit Category</h2>
+            <h2 className="text-2xl font-bold mb-4">Edit Leave</h2>
             <form onSubmit={handleUpdate}>
               <label className="block mb-2">Name</label>
               <input
@@ -174,11 +190,74 @@ const Showleave = () => {
                 required
               />
 
-              <label className="block mb-2">Description</label>
+              <label className="block mb-2">Code</label>
               <input
                 type="text"
-                name="description"
-                value={updatedData.description}
+                name="code"
+                value={updatedData.code}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">Designation</label>
+              <input
+                type="text"
+                name="designation"
+                value={updatedData.designation}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">Institute</label>
+              <input
+                type="text"
+                name="institute"
+                value={updatedData.institute}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">From</label>
+              <input
+                type="date"
+                name="from"
+                value={updatedData.from}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">To</label>
+              <input
+                type="date"
+                name="to"
+                value={updatedData.to}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">Country</label>
+              <input
+                type="text"
+                name="country"
+                value={updatedData.country}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">Category</label>
+              <input
+                type="text"
+                name="category"
+                value={updatedData.category}
+                onChange={handleChange}
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <label className="block mb-2">Finance</label>
+              <input
+                type="text"
+                name="finance"
+                value={updatedData.finance}
                 onChange={handleChange}
                 className="w-full p-2 border rounded mb-4"
                 required

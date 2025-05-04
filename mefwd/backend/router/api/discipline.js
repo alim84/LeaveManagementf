@@ -1,12 +1,10 @@
 const express = require("express");
 
 const multer = require("multer");
+
 const {
-  LeaveController,
-  ShowLeaveController,
-  deleteLeave,
-  updateLeaveController,
-} = require("../../controllers/LeaveController");
+  AddDisciplineController,
+} = require("../../controllers/DisciplineController");
 
 const router = express.Router();
 
@@ -39,15 +37,12 @@ function errorhandle(err, req, res, next) {
   }
   next();
 }
-
+//localhost:5000/api/v1/discipline/adddiscipline
 router.post(
-  "/leavemanagement",
+  "/adddiscipline",
   upload.single("image"),
   errorhandle,
-  LeaveController
+  AddDisciplineController
 );
-router.get("/showleave", ShowLeaveController);
-router.delete("/deleteleave/:id", deleteLeave);
-router.patch("/updateleave/:id", upload.single("image"), updateLeaveController);
 
 module.exports = router;

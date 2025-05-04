@@ -3,9 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Rootlayout from "./component/layout/Rootlayout";
-import Addproduct from "./pages/Addproduct";
 import { Allproduct } from "./pages/Allproduct";
-
 
 import ProtectRoute from "./component/layout/ProtectRoute";
 import PersonelInfo from "./pages/PersonelInfo";
@@ -13,6 +11,7 @@ import Inventory from "./pages/Inventory";
 import Comsumption from "./pages/Consumption";
 import LeaveManagement from "./pages/LeaveManagement";
 import Showleave from "./pages/Showleave";
+import Discipline from "./pages/Discipline";
 
 const App = () => {
   return (
@@ -21,7 +20,7 @@ const App = () => {
         <Route path="/" element={<Rootlayout />}>
           <Route element={<ProtectRoute />}>
             <Route index element={<Home />} />
-            <Route path="/addproduct" element={<Addproduct />} />
+            <Route path="/discipline" element={<Discipline />} />
             <Route path="/leavemanagement" element={<LeaveManagement />} />
             <Route path="/allproduct" element={<Allproduct />} />
             <Route path="/showleave" element={<Showleave />} />

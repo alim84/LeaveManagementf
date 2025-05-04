@@ -1,6 +1,6 @@
-const leaveManModel = require("../model/leaveManModel");
 const fs = require("fs");
 const path = require("path");
+const leaveManModel = require("../model/leaveManModel");
 
 async function LeaveController(req, res) {
   let {
@@ -84,37 +84,53 @@ async function deleteLeave(req, res) {
 
 async function updateLeaveController(req, res) {
   let { id } = req.params;
-  let { name, description } = req.body;
+  let { name, code, designation, institute, from, to, country, category, finance, description } = req.body;
   const image = req.file;
-  const { filename } = image;
 
   try {
+    // First, find the existing leave record
+    let existingLeave = await leaveManModel.findById(id);
+    if (!existingLeave) {
+      return res.status(404).send({ success: false, msg: "Leave not found" });
+    }
+
+    // Update data
+    let updatedData = { name, code, designation, institute, from, to, country, category, finance, description };
+    if (image) {
+      updatedData.image = process.env.HOST_URL + image.filename;
+    }
+
     let leaveupdate = await leaveManModel.findOneAndUpdate(
       { _id: id },
-      { name, description, image: process.env.HOST_URL + req.file.filename }
+      updatedData,
+      { new: true } // returns the updated document
     );
-    let imagepath = leave.image.split("/");
-    let oldimagepath = imagepath[imagepath.length - 1];
-    fs.unlink(
-      `${path.join(__dirname, "../uploads")}/${oldimagepath}`,
-      (err) => {
+
+    // If there is a new image, delete the old image
+    if (image && existingLeave.image) {
+      let imagepath = existingLeave.image.split("/");
+      let oldimagepath = imagepath[imagepath.length - 1];
+      const fullOldImagePath = path.join(__dirname, "../uploads", oldimagepath);
+
+      fs.unlink(fullOldImagePath, (err) => {
         if (err) {
-          res.status(500).send({
-            success: false,
-            msg: `${err.message ? err.message : "Internal Server error"}`,
-            err,
-          });
-        } else {
-          res
-            .status(200)
-            .send({ success: true, msg: "image Deleted", data: leaveupdate });
+          console.error("Error deleting old image:", err.message);
+          // Don't return error to client here, just log it
         }
-      }
-    );
+      });
+    }
+
+    res
+      .status(200)
+      .send({
+        success: true,
+        msg: "Leave updated successfully",
+        data: leaveupdate,
+      });
   } catch (error) {
     res.status(500).send({
       success: false,
-      msg: `${error.message ? error.message : "Internal Server error"}`,
+      msg: error.message || "Internal Server Error",
       error,
     });
   }
@@ -124,5 +140,5 @@ module.exports = {
   LeaveController,
   ShowLeaveController,
   deleteLeave,
-  updateLeaveController
+  updateLeaveController,
 };

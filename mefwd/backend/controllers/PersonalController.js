@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const disciplineModel = require("../model/disciplineModel");
+const disciplineModel = require("../model/personalInfoModel");
 
-async function AddDisciplineController(req, res) {
+async function PersonalController(req, res) {
   try {
     let {
       name,
@@ -41,5 +41,5 @@ async function AddDisciplineController(req, res) {
 }
 
 module.exports = {
-  AddDisciplineController,
+    PersonalController,
 };

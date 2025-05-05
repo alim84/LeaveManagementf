@@ -1,24 +1,61 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import divisionss from "../json/Division.json";
+import districtss from "../json/Districts.json";
+import upzilass from "../json/Upazilas.json";
 
 const PersonelInfo = () => {
-  const [productName, setProductName] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productImage, setProductImage] = useState(null);
-  const [sellingprice, setsellingprice] = useState("");
-  const [discountprice, setdiscountprice] = useState("");
-  const [productCategory, setProductCategory] = useState("");
-  const [allcategory, setAllcategory] = useState([]);
+  let [name, setName] = useState("");
+  let [designation, setDesignation] = useState("");
+  let [grade, setGrade] = useState("");
+  let [section, setSection] = useState("");
+  let [mobile, setMobile] = useState("");
+  let [email, setEmail] = useState("");
+  let [dateofbirth, setDateofbirth] = useState("");
+  let [gender, setGender] = useState("");
+  let [merital, setmerital] = useState("");
+  let [religion, setReligion] = useState("");
+
+  let [perPostoffice, setPerpostoffice] = useState("");
+  let [pervillage, setPervillage] = useState("");
+  let [perroad, setPerroad] = useState("");
+  let [perhouse, setPerhouse] = useState("");
+
+  let [prePostoffice, setPrepostoffice] = useState("");
+  let [previllage, setPrevillage] = useState("");
+  let [preroad, setPreroad] = useState("");
+  let [prehouse, setPrehouse] = useState("");
+  let [appontmentCatagory, setappontmentCatagory] = useState("");
+  let [firstjoint, setFirstjoint] = useState("");
+  let [firstdesignation, setFirstdesignation] = useState("");
+  let [scale, setScale] = useState("");
+  let [promotiondesignation, setPromotiondesignation] = useState("");
+  let [promotionjoinindate, setPromotionjoinindate] = useState("");
+
+  let [alldata, setAllData] = useState([]);
+  let [divisions, setDivisions] = useState([]);
+  let [districts, setDistricts] = useState([]);
+  let [upzilas, setUpzila] = useState([]);
+
+  useEffect(() => {
+    setDivisions(divisionss);
+  }, []);
+  useEffect(() => {
+    setDistricts(districtss);
+  }, []);
+  useEffect(() => {
+    setUpzila(upzilass);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can handle the form submission logic here, like sending the data to an API
     console.log({
-      productName,
-      productDescription,
-      productImage,
-      sellingprice,
-      productCategory,
+      // productName,
+      // productDescription,
+      // productImage,
+      // sellingprice,
+      // productCategory,
     });
   };
   useEffect(() => {
@@ -48,22 +85,23 @@ const PersonelInfo = () => {
           </label>
           <input
             type="text"
-            id="productName"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Enter Employee name"
             className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
           />
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">পদবি :</level>
+          <level className="text-gray-700">পদবি </level>
           <select
             className="mt-2 p-3 text-gray-700 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="designation"
             name="designation"
-            onChange="{designationHandler}"
+            value={designation}
+            onChange={(e) => setDesignation(e.target.value)}
           >
             <option>নির্বাচন করুন</option>
 
@@ -96,13 +134,13 @@ const PersonelInfo = () => {
         </div>
 
         <div className="flex flex-col">
-          <level className="text-gray-700">গ্রেড :</level>
+          <level className="text-gray-700">গ্রেড</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="designation"
-            name="designation"
-            onChange="{gradeHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
             <option>নির্বাচন করুন</option>
             <option>গ্রেড-১ ৭৮০০০ (নির্ধারিত)</option>
@@ -128,14 +166,15 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700 block">শাখা/অধিশাখা/অনুবিভাগ :</level>
+          <level className="text-gray-700 block">শাখা/অধিশাখা/অনুবিভাগ </level>
 
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="designation"
             name="designation"
-            onChange="{sectionHandler}"
+            value={section}
+            onChange={(e) => setSection(e.target.value)}
           >
             <option>নির্বাচন করুন</option>
             <option value="Secretary">সচিব মহোদয়ের দপ্তর</option>
@@ -213,38 +252,42 @@ const PersonelInfo = () => {
             placeholder="মোবাইল নাম্বার "
             type="text"
             name="name"
-            onChange="{mobileHandler}"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">ই-মেইল :</level>
+          <level className="text-gray-700">ই-মেইল </level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="ই-মেইল"
             type="email"
             name="name"
-            onChange="{emailHandler}"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">জন্মতারিখ :</level>
+          <level className="text-gray-700">জন্মতারিখ </level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             type="date"
             name="name"
-            onChange="{birthHandler}"
+            value={dateofbirth}
+            onChange={(e) => setDateofbirth(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">জেন্ডার :</level>
+          <level className="text-gray-700">জেন্ডার </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="gender"
             name="gender"
-            onChange="{gengerHandler}"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
           >
             <option value="male">নির্বাচন করুন</option>
             <option value="male">পুরুষ</option>
@@ -252,13 +295,14 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">বৈবাহিক অবস্থা :</level>
+          <level className="text-gray-700">বৈবাহিক অবস্থা </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="mariul status"
             name="mariul status"
-            onChange="{meritalHandler}"
+            value={merital}
+            onChange={(e) => setmerital(e.target.value)}
           >
             <option value="male">নির্বাচন করুন</option>
             <option value="male">বিবাহিত</option>
@@ -266,13 +310,14 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">ধর্ম :</level>
+          <level className="text-gray-700">ধর্ম </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="religion"
             name="religion"
-            onChange="{religionHandler}"
+            value={religion}
+            onChange={(e) => setReligion(e.target.value)}
           >
             <option value="male">নির্বাচন করুন</option>
             <option value="male">ইসলাম</option>
@@ -283,215 +328,243 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">নিজ জেলা :</level>
+          <level className="text-gray-700">নিজ জেলা </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="selfdist"
             name="selfdist"
-            onChange="{homedristrictHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {districts.map((item, index) => (
-                      <option key={index} value={item.district_name}>
-                        {item.district_name}
-                      </option>
-                    ))} */}
+            {districts.map((item, index) => (
+              <option key={index} value={item.district_name}>
+                {item.district_name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">বিভাগ :</level>
+          <label htmlFor="image" className="text-lg text-gray-700">
+            ছবি (Image Upload)
+          </label>
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={(e) => setGovOrder(e.target.files[0])}
+            className="mt-2 p-2 border border-gray-300 rounded-lg"
+          />
+        </div>
+        <div className="flex flex-col">
+          <level className="text-gray-700">স্থায়ী বিভাগ</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="division"
             name="division"
-            onChange="{perdivisionHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {divisions.map((item) => (
-                      <option value={item.division_name}>
-                        {item.division_name}
-                      </option>
-                    ))} */}
+            {divisions.map((item, index) => (
+              <option key={index} value={item.division_name}>
+                {item.division_name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">জেলা :</level>
+          <level className="text-gray-700">স্থায়ী জেলা</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="dist"
             name="dist"
-            onChange="{perdristrictHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {districts.map((item) => (
-                      <option value={item.district_name}>
-                        {item.district_name}
-                      </option>
-                    ))} */}
+            {districts.map((item, index) => (
+              <option key={index} value={item.district_name}>
+                {item.district_name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">উপজেলা :</level>
+          <level className="text-gray-700">স্থায়ী উপজেলা</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="upzila"
             name="upzila"
-            onChange="{perthanaHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {upzilas.map((item) => (
-                      <option value={item.upazila_name}>
-                        {item.upazila_name}
-                      </option>
-                    ))} */}
+            {upzilas.map((item, index) => (
+              <option key={index} value={item.upazila_name}>
+                {item.upazila_name}
+              </option>
+            ))}
           </select>
         </div>
 
         <div className="flex flex-col">
-          <level className="text-gray-700">পোস্ট অফিস :</level>
+          <level className="text-gray-700">স্থায়ী পোস্ট অফিস</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700"> গ্রাম/মহল্লা/ওয়ার্ড :</level>
+          <level className="text-gray-700"> গ্রাম/মহল্লা/ওয়ার্ড</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">রাস্তা নং :</level>
+          <level className="text-gray-700">রাস্তা নং</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">বাড়ি নং :</level>
+          <level className="text-gray-700">বাড়ি নং</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">বিভাগ :</level>
+          <level className="text-gray-700">বর্তমান বিভাগ</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="division"
             name="division"
-            onChange="{perdivisionHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {divisions.map((item) => (
-                      <option value={item.division_name}>
-                        {item.division_name}
-                      </option>
-                    ))} */}
+            {divisions.map((item, index) => (
+              <option key={index} value={item.division_name}>
+                {item.division_name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">জেলা :</level>
+          <level className="text-gray-700">বর্তমান জেলা</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="dist"
             name="dist"
-            onChange="{perdristrictHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {districts.map((item) => (
-                      <option value={item.district_name}>
-                        {item.district_name}
-                      </option>
-                    ))} */}
+            {districts.map((item, index) => (
+              <option key={index} value={item.district_name}>
+                {item.district_name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">উপজেলা :</level>
+          <level className="text-gray-700">বর্তমান উপজেলা</level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="upzila"
             name="upzila"
-            onChange="{perthanaHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
-            {/* {upzilas.map((item) => (
-                      <option value={item.upazila_name}>
-                        {item.upazila_name}
-                      </option>
-                    ))} */}
+            {upzilas.map((item, index) => (
+              <option key={index} value={item.upazila_name}>
+                {item.upazila_name}
+              </option>
+            ))}
           </select>
         </div>
 
         <div className="flex flex-col">
-          <level className="text-gray-700">পোস্ট অফিস :</level>
+          <level className="text-gray-700">বর্তমান পোস্ট অফিস</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700"> গ্রাম/মহল্লা/ওয়ার্ড :</level>
+          <level className="text-gray-700"> গ্রাম/মহল্লা/ওয়ার্ড</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">রাস্তা নং :</level>
+          <level className="text-gray-700">রাস্তা নং </level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">বাড়ি নং :</level>
+          <level className="text-gray-700">বাড়ি নং </level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="পোস্ট অফিস "
             type="text"
             name="name"
-            onChange="{perpostHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">নিয়োগের ধরন :</level>
+          <level className="text-gray-700">নিয়োগের ধরন </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="apptype"
             name="apptype"
-            onChange="{appcatagoryHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
             <option value="dist">নির্বাচন করুন</option>
             <option value="dist">সরাসরি</option>
@@ -501,23 +574,25 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">প্রথম যোগদানের তারিখ:</level>
+          <level className="text-gray-700">প্রথম যোগদানের তারিখ</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             type="date"
             name="name"
-            onChange="{firstJointdateHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">পদবি :</level>
+          <level className="text-gray-700">পদবি </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="designation"
             name="designation"
-            onChange="{firstdesignationHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
             <option>নির্বাচন করুন</option>
             <option>সিস্টেম এনালিস্ট</option>
@@ -537,13 +612,14 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">বেতন স্কেল :</level>
+          <level className="text-gray-700">বেতন স্কেল </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="designation"
             name="designation"
-            onChange="{scaleHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
             <option>নির্বাচন করুন</option>
             <option>(20)-8100X20---23000X15</option>
@@ -555,13 +631,14 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">পদোন্নতির পদবি :</level>
+          <level className="text-gray-700">পদোন্নতির পদবি </level>
           <select
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             id="designation"
             name="designation"
-            onChange="{promotionHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           >
             <option>নির্বাচন করুন</option>
             <option>সিস্টেম এনালিস্ট</option>
@@ -581,14 +658,15 @@ const PersonelInfo = () => {
           </select>
         </div>
         <div className="flex flex-col">
-          <level className="text-gray-700">পদোন্নতির তারিখ:</level>
+          <level className="text-gray-700">পদোন্নতির তারিখ</level>
           <input
             className="mt-2 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             required
             placeholder="Enter Your Name"
             type="date"
             name="name"
-            onChange="{promotionjoindateHandler}"
+            value={grade}
+            onChange={(e) => setGrade(e.target.value)}
           ></input>
         </div>
 

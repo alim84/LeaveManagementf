@@ -45,7 +45,7 @@ export function DefaultSidebar() {
           <ListItemPrefix>
             <MdAddShoppingCart className="h-5 w-5" />
           </ListItemPrefix>
-          <Link to="/addproduct ">Discipline</Link>
+          <Link to="/discipline ">Discipline</Link>
         </ListItem>
 
         <ListItem>
